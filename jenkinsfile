@@ -1,7 +1,7 @@
 pipeline{
     agent any
     triggers {
-        cron('*/1 * * * *')
+        cron('*/3 * * * *')
     }
     stages{
         stage("Job-1"){
@@ -12,7 +12,7 @@ pipeline{
         }
         stage("Job-2"){
             steps{
-                node main.js
+               sh 'node main.js'
             }
             
         }
