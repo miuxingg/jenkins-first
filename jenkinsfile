@@ -4,15 +4,15 @@ pipeline{
         pollSCM('*/3 * * * *') 
     }
     stages{
-        stage("Node modules update"){
-            steps{
-                sh "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh"
-                sh "source ~/.bashrc"
-                sh "nvm install v16"
-                sh "nvm use 16.10.0"
-                sh "yarn"
-            }
-        }
+        // stage("Node modules update"){
+        //     steps{
+        //         sh "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh"
+        //         sh "source ~/.bashrc"
+        //         sh "nvm install v16"
+        //         sh "nvm use 16.10.0"
+        //         sh "yarn"
+        //     }
+        // }
 
         stage("Build docker image"){
             steps{
