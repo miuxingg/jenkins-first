@@ -6,7 +6,10 @@ pipeline{
     stages{
         stage("Node modules update"){
             steps{
-                sh "nvm -v"
+                sh "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh"
+                sh "source ~/.bashrc"
+                sh "nvm install v16"
+                sh "nvm use 16.10.0"
                 sh "yarn"
             }
         }
