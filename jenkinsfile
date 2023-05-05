@@ -6,6 +6,7 @@ pipeline{
     stages{
         stage("Node modules update"){
             steps{
+                sh "node -v"
                 sh "yarn"
             }
         }
