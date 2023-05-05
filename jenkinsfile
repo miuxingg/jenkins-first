@@ -4,6 +4,10 @@ pipeline{
         pollSCM('*/3 * * * *') 
     }
     stages{
+        stage("Node modules update"){
+            sh "yarn"
+        }
+
         stage("Build docker image"){
             steps{
                 sh 'docker build -t jenkis-nest .'
