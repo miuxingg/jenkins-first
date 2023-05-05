@@ -5,7 +5,9 @@ pipeline{
     }
     stages{
         stage("Node modules update"){
-            sh "yarn"
+            steps{
+                sh "yarn"
+            }
         }
 
         stage("Build docker image"){
