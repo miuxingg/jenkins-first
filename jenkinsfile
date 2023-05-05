@@ -6,8 +6,7 @@ pipeline{
     stages{
         stage("Build docker image"){
             steps{
-                echo "========executing Job-1========"
-                sh 'docker build -t jenkis-nest'
+                sh 'docker build -t jenkis-nest .'
             }
             
         }
