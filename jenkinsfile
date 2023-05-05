@@ -6,13 +6,13 @@ pipeline{
     stages{
         stage("Build docker image"){
             steps{
-                sh 'docker build -t jenkis-nest .'
+                sh 'sudo docker build -t jenkis-nest .'
             }
             
         }
         stage("Run docker image"){
             steps{
-               sh 'docker run -p 7000:7000 jenkis-nest'
+               sh 'sudo docker run -p 7000:7000 jenkis-nest'
             }
             
         }
