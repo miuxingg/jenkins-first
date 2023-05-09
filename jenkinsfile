@@ -4,29 +4,33 @@ pipeline{
         pollSCM('*/3 * * * *') 
     }
     stages{
-        // stage("Node modules update"){
-        //     steps{
-        //         sh "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh"
-        //         sh "source ~/.bashrc"
-        //         sh "nvm install v16"
-        //         sh "nvm use 16.10.0"
-        //         sh "yarn"
-        //     }
-        // }
-
         stage("Build docker image"){
             steps{
-                sh 'yarn'
                 sh 'docker build -t jenkis-nest .'
             }
             
         }
-        stage("Run docker image"){
+        stage('Push docker image to Docker Hub'){
             steps{
-               sh 'docker run -d -p 7000:7000 jenkis-nest'
+                sh 'docker login --username=miuxing2k@gmail.com --password=ThanhBinh2k'
+                sh 'docker push miuxing2k/jenkins-test:jenkis-nest'
             }
-            
         }
+        stage('Remove docker image'){
+            sh 'docker rmi jenkis-nest'
+        }
+        stage('Pull docker image from Docker Hub'){
+            sh 'docker pull miuxing2k/jenkins-test:jenkis-nest'
+        }
+        stage('Run docker image'){
+            sh 'docker run -p 7000:7000 miuxing2k/jenkins-test:jenkis-nest'
+        }
+        // stage("Run docker image"){
+        //     steps{
+        //        sh 'docker run -p 7000:7000 jenkis-nest'
+        //     }
+            
+        // }
         
     }
     post{
