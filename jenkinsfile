@@ -25,22 +25,23 @@ pipeline{
                 sh 'docker rmi jenkis-nest:0.0.1'
             }
         }
-        stage('Pull docker image from Docker Hub'){
+        stage('Remote another server and run docker image'){
             steps{
-                sh 'docker pull miuxing2k/jenkis-nest:0.0.1'
-            }
+                sh 'ssh mtt-user@192.168.100.68 docker pull miuxing2k/jenkis-nest:0.0.1'
+                sh 'ssh mtt-user@192.168.100.68 docker run -d -p 7000:7000 miuxing2k/jenkis-nest:0.0.1'
             
-        }
-        stage('Run docker image'){
-            steps{
-                sh 'docker run -d -p 7000:7000 miuxing2k/jenkis-nest:0.0.1'
             }
         }
-        // stage("Run docker image"){
+        // stage('Pull docker image from Docker Hub'){
         //     steps{
-        //        sh 'docker run -p 7000:7000 jenkis-nest'
+        //         sh 'docker pull miuxing2k/jenkis-nest:0.0.1'
         //     }
             
+        // }
+        // stage('Run docker image'){
+        //     steps{
+        //         sh 'docker run -d -p 7000:7000 miuxing2k/jenkis-nest:0.0.1'
+        //     }
         // }
         
     }
