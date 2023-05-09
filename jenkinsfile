@@ -16,7 +16,7 @@ pipeline{
 
         stage("Build docker image"){
             steps{
-                sh 'ls'
+                sh 'yarn'
                 sh 'docker build -t jenkis-nest .'
             }
             
