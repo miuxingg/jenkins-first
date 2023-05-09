@@ -6,30 +6,31 @@ pipeline{
     stages{
         stage("Build docker image"){
             steps{
-                sh 'docker build -t jenkis-nest .'
+                sh 'docker build -t jenkis-nest:0.0.1 .'
             }
             
         }
         stage('Push docker image to Docker Hub'){
             steps{
-                sh 'docker login --username=miuxing2k --password=ThanhBinh2k'
-                sh 'docker push miuxing2k/jenkins-test:jenkis-nest'
+                sh 'docker login --username=miuxing2k@gmail.com --password=ThanhBinh2k'
+                sh 'docker tag jenkis-nest:0.0.1 miuxing2k/jenkis-nest:0.0.1'
+                sh 'docker push miuxing2k/jenkis-nest:0.0.1'
             }
         }
         stage('Remove docker image'){
             steps{
-                sh 'docker rmi jenkis-nest'
+                sh 'docker rmi jenkis-nest:0.0.1'
             }
         }
         stage('Pull docker image from Docker Hub'){
             steps{
-                sh 'docker pull miuxing2k/jenkins-test:jenkis-nest'
+                sh 'docker pull miuxing2k/jenkis-nest:0.0.1'
             }
             
         }
         stage('Run docker image'){
             steps{
-                sh 'docker run -p 7000:7000 miuxing2k/jenkins-test:jenkis-nest'
+                sh 'docker run -p 7000:7000 miuxing2k/jenkis-nest:0.0.1'
             }
         }
         // stage("Run docker image"){
