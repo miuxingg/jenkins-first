@@ -12,7 +12,8 @@ pipeline{
         }
         stage('Push docker image to Docker Hub'){
             steps{
-                sh 'docker login --username=miuxing2k --password=ThanhBinh2k'
+                withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'docker_password', usernameVariable: 'docker_username')])
+                sh 'docker login --username=${docker_username} --password=${docker_password}'
                 sh 'docker tag jenkis-nest:0.0.1 miuxing2k/jenkis-nest:0.0.1'
                 sh 'docker push miuxing2k/jenkis-nest:0.0.1'
             }
