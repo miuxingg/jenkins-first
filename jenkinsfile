@@ -27,9 +27,9 @@ pipeline{
         }
         stage('Remote another server and run docker image'){
             steps{
-                sh 'ssh mtt-user@192.168.100.68 -R ls'
-                sh 'ssh mtt-user@192.168.100.68 docker pull miuxing2k/jenkis-nest:0.0.1'
-                sh 'ssh mtt-user@192.168.100.68 docker run -d -p 7000:7000 miuxing2k/jenkis-nest:0.0.1'
+                sh 'ssh -o StrictHostKeyChecking=no mtt-user@192.168.100.68 ls'
+                sh 'ssh -o StrictHostKeyChecking=no mtt-user@192.168.100.68 docker pull miuxing2k/jenkis-nest:0.0.1'
+                sh 'ssh -o StrictHostKeyChecking=no mtt-user@192.168.100.68 docker run -d -p 7000:7000 miuxing2k/jenkis-nest:0.0.1'
             
             }
         }
