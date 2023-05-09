@@ -17,13 +17,20 @@ pipeline{
             }
         }
         stage('Remove docker image'){
-            sh 'docker rmi jenkis-nest'
+            steps{
+                sh 'docker rmi jenkis-nest'
+            }
         }
         stage('Pull docker image from Docker Hub'){
-            sh 'docker pull miuxing2k/jenkins-test:jenkis-nest'
+            steps{
+                sh 'docker pull miuxing2k/jenkins-test:jenkis-nest'
+            }
+            
         }
         stage('Run docker image'){
-            sh 'docker run -p 7000:7000 miuxing2k/jenkins-test:jenkis-nest'
+            steps{
+                sh 'docker run -p 7000:7000 miuxing2k/jenkins-test:jenkis-nest'
+            }
         }
         // stage("Run docker image"){
         //     steps{
