@@ -23,7 +23,7 @@ pipeline{
         }
         stage("Run docker image"){
             steps{
-               sh 'docker run -p 7000:7000 jenkis-nest'
+               sh 'docker run -d -p 7000:7000 jenkis-nest'
             }
             
         }
